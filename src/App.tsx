@@ -1,10 +1,11 @@
 import './App.css';
+import Categories from './containers/Categories/Categories';
 
 const App = () => {
 
   return (
     <>
-      App
+      <Categories/>
     </>
   );
 };
