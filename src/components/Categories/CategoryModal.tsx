@@ -30,8 +30,8 @@ const CategoryModal: React.FC<CategoryModalProps> = ({currentCategory, onClose})
     }
   }, [currentCategory]);
 
-  const onFieldChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const {name, value} = e.target;
+  const onFieldChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const {name, value} = event.target;
     setCategory(prev => ({
       ...prev,
       [name]: value,
