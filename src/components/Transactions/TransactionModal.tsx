@@ -89,7 +89,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({currentTransaction, 
             </div>
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label htmlFor="transactionType">Type</label>
                   <select
                     className="form-control"
@@ -103,7 +103,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({currentTransaction, 
                     <option value="expense">Expense</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label htmlFor="transactionCategory">Category</label>
                   <select
                     className="form-control"
@@ -121,7 +121,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({currentTransaction, 
                     ))}
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label htmlFor="transactionAmount">Amount</label>
                   <input
                     type="number"

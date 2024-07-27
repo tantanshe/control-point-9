@@ -1,14 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
-import {deleteTransaction, fetchTransactions, selectTransactions} from '../../store/transactionsSlice';
-import {fetchCategories, selectCategories} from '../../store/categoriesSlice';
+import {
+  deleteTransaction,
+  fetchTransactions,
+  selectIsTransactionsLoading,
+  selectTransactions
+} from '../../store/transactionsSlice';
+import {fetchCategories, selectCategories, selectError} from '../../store/categoriesSlice';
 import TransactionModal from '../../components/Transactions/TransactionModal';
 import dayjs from 'dayjs';
+import {AppDispatch} from '../../app/store';
+import Spinner from '../../components/Spinner/Spinner';
 
-const MainPage: React.FC = () => {
-  const dispatch = useAppDispatch();
+const MainPage = () => {
+  const dispatch: AppDispatch = useAppDispatch();
   const transactions = useAppSelector(selectTransactions);
   const categories = useAppSelector(selectCategories);
+  const isLoading = useAppSelector(selectIsTransactionsLoading);
+  const error = useAppSelector(selectError);
   const [showModal, setShowModal] = useState(false);
   const [editingTransaction, setEditingTransaction] = React.useState<{
     id: string;
@@ -26,7 +35,7 @@ const MainPage: React.FC = () => {
 
   const totalAmount = transactions.reduce((acc, transaction) => {
     const category = categories.find(cat => cat.id === transaction.category);
-    const amount = parseFloat(transaction.amount);
+    const amount = parseFloat(String(transaction.amount));
     if (category) {
       return acc + (category.type === 'income' ? amount : -amount);
     } else {
@@ -50,19 +59,12 @@ const MainPage: React.FC = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">
-          My transactions
-        </a>
-        <button className="btn btn-primary ml-auto" onClick={() => setShowModal(true)}>
-          Add Transaction
-        </button>
-      </nav>
-
+      {isLoading && (<Spinner/>)}
+      {error && (<p>Error loading categories!</p>)}
       <div className="container mt-4">
         <div className="row mb-3">
-          <div className="col">
-            <h2>Total: {totalAmount} KGS</h2>
+          <div className="mb-3">
+            <span className="col border border-3 border-primary rounded p-3 h4">Total: {totalAmount} KGS</span>
           </div>
         </div>
 

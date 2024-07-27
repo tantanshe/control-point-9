@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AppDispatch} from '../store';
+import {AppDispatch} from '../../app/store';
 import CategoryModal from '../../components/Categories/CategoryModal';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {

@@ -63,7 +63,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({currentCategory, onClose})
             </div>
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label htmlFor="categoryName">Name</label>
                   <input
                     type="text"
@@ -75,7 +75,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({currentCategory, onClose})
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-3">
                   <label htmlFor="categoryType">Type</label>
                   <select
                     className="form-control"
